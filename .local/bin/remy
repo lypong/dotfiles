@@ -1,0 +1,43 @@
+#!/usr/bin/python3
+
+import sys
+import os
+
+def usage():
+  print("todo")
+
+def command(s):
+  print(f'[COMMAND] {s}')
+  os.system(s)
+
+def main():
+  if len(sys.argv) < 3:
+    usage()
+    quit()
+  match sys.argv[1]:
+    case 'install':
+      result = 'nix-env --install -A'
+      for pkg in sys.argv[2:]:
+        result += f" nixpkgs.{pkg}"
+      command(result)
+    case 'search':
+      result = 'nix search nixpkgs '
+      result += ' '.join(sys.argv[2:])
+      command(result)
+    case 'uninstall':
+      result = 'nix-env --uninstall '
+      result += ' '.join(sys.argv[2:])
+      command(result)
+    case 'try':
+      result = 'nix-shell -p '
+      result += ' '.join(sys.argv[2:])
+      command(result)
+    case 'update':
+      command('nix-channel --update')
+      command("nix-env -u '*'")
+    case _:
+      usage()
+      quit()
+
+if __name__ == "__main__":
+  main()
