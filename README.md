@@ -12,6 +12,7 @@ Some dotfiles rely on specific programs (For instance, hyprland executes command
 * fuzzel
 * waybar
 * hyprpaper
+* appimaged (https://github.com/probonopd/go-appimage/tree/master/src/appimaged)
 ## Tinkering
 ### Change packagekit permissions
 By default Fedora lets users that belong to wheel group install and remove packages without password.
